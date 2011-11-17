@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3D917D15-ED90-432A-83FF-33CB3E9B9A99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vici.Mvc</RootNamespace>
+    <AssemblyName>Vici.Mvc</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Vici.Core, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Externals\Vici.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\VersionInfo.cs" />
+    <Compile Include="Source\Ajax\AjaxContext.cs" />
+    <Compile Include="Source\Ajax\AjaxHelper.cs" />
+    <Compile Include="Source\Ajax\AjaxMethod.cs" />
+    <Compile Include="Source\Attributes\Ajax\AjaxAttribute.cs" />
+    <Compile Include="Source\Attributes\Ajax\AjaxValidatedAttribute.cs" />
+    <Compile Include="Source\Attributes\AllowCachingAttribute.cs" />
+    <Compile Include="Source\Attributes\Aspect\ActionAspectAttribute.cs" />
+    <Compile Include="Source\Attributes\ComponentNameAttribute.cs" />
+    <Compile Include="Source\Attributes\Aspect\ActionAspectContext.cs" />
+    <Compile Include="Source\Attributes\Filter\ActionContext.cs" />
+    <Compile Include="Source\Attributes\Filter\ActionFilterAttribute.cs" />
+    <Compile Include="Source\Attributes\Filter\FilterContext.cs" />
+    <Compile Include="Source\Attributes\Filter\GETOnlyAttribute.cs" />
+    <Compile Include="Source\Attributes\Filter\POSTOnlyAttribute.cs" />
+    <Compile Include="Source\Attributes\Filter\RequestMethodFilterAttribute.cs" />
+    <Compile Include="Source\Attributes\ParameterMapping\GetAttribute.cs" />
+    <Compile Include="Source\Attributes\ParameterMapping\GetOrPostAttribute.cs" />
+    <Compile Include="Source\Attributes\View\LayoutAttribute.cs" />
+    <Compile Include="Source\Attributes\OrderedAttribute.cs" />
+    <Compile Include="Source\Attributes\ParameterMapping\ParameterAttribute.cs" />
+    <Compile Include="Source\Attributes\ParameterMapping\PostAttribute.cs" />
+    <Compile Include="Source\Attributes\ParameterMapping\ClientDataAttribute.cs" />
+    <Compile Include="Source\Attributes\BeforeActionAttribute.cs" />
+    <Compile Include="Source\Attributes\AfterActionAttribute.cs" />
+    <Compile Include="Source\Attributes\UrlAttribute.cs" />
+    <Compile Include="Source\Attributes\View\ViewAttribute.cs" />
+    <Compile Include="Source\ClientData\ClientDataCollection.cs" />
+    <Compile Include="Source\Controller\ActionMethod.cs" />
+    <Compile Include="Source\Controller\ActionResult\ActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\JSONActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\NotFoundActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\NotModifiedActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\RedirectActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\RenderViewActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\SendFileActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\StatusCodeActionResult.cs" />
+    <Compile Include="Source\Controller\ActionResult\XmlActionResult.cs" />
+    <Compile Include="Source\Controls\CheckBoxControl.cs" />
+    <Compile Include="Source\Controls\CheckBoxListControl.cs" />
+    <Compile Include="Source\Controls\Control.cs" />
+    <Compile Include="Source\Controls\DropdownControl.cs" />
+    <Compile Include="Source\Controls\HiddenControl.cs" />
+    <Compile Include="Source\Controls\MemoControl.cs" />
+    <Compile Include="Source\Controls\NumberBoxControl.cs" />
+    <Compile Include="Source\Controls\PasswordBoxControl.cs" />
+    <Compile Include="Source\Controls\RadioButtonControl.cs" />
+    <Compile Include="Source\Controls\RadioButtonListControl.cs" />
+    <Compile Include="Source\Controls\TextBoxControl.cs" />
+    <Compile Include="Source\Controls\ViewComponents\CheckBoxComponent.cs" />
+    <Compile Include="Source\Controls\ViewComponents\DropdownComponent.cs" />
+    <Compile Include="Source\Controls\ViewComponents\TextBoxComponent.cs" />
+    <Compile Include="Source\Exceptions\ViciMvcException.cs" />
+    <Compile Include="Source\Exceptions\EndResponseException.cs" />
+    <Compile Include="Source\FormAttributes\FormCheckboxAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormCheckBoxListAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormDateAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormDropDownAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormEMailAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormFieldAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormHiddenAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormMemoAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormPasswordAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormRadioButtonAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormRadioButtonListAttribute.cs" />
+    <Compile Include="Source\FormAttributes\FormTextBoxAttribute.cs" />
+    <Compile Include="Source\FormAttributes\Validation\ValidateExpressionAttribute.cs" />
+    <Compile Include="Source\FormAttributes\Validation\ValidateLengthAttribute.cs" />
+    <Compile Include="Source\FormAttributes\Validation\ValidateRangeAttribute.cs" />
+    <Compile Include="Source\FormAttributes\Validation\ValidateRegExAttribute.cs" />
+    <Compile Include="Source\FormAttributes\Validation\ValidateRequiredAttribute.cs" />
+    <Compile Include="Source\FormAttributes\Validation\ValidationAttribute.cs" />
+    <Compile Include="Source\FormEngine\FormField.cs" />
+    <Compile Include="Source\FormEngine\FormFieldCollection.cs" />
+    <Compile Include="Source\FormEngine\ValidationErrorControl.cs" />
+    <Compile Include="Source\FormEngine\ValidationErrorMessage.cs" />
+    <Compile Include="Source\FormEngine\ValidationResult.cs" />
+    <Compile Include="Source\FormEngine\WebForm.cs" />
+    <Compile Include="Source\HttpContext\HttpContextBase.cs" />
+    <Compile Include="Source\HttpContext\IHttpRequest.cs" />
+    <Compile Include="Source\HttpContext\IHttpResponse.cs" />
+    <Compile Include="Source\HttpContext\IHttpServerUtility.cs" />
+    <Compile Include="Source\HttpContext\IHttpSessionState.cs" />
+    <Compile Include="Source\HttpContext\Offline\OfflineHttpContext.cs" />
+    <Compile Include="Source\HttpContext\Offline\OfflineHttpRequest.cs" />
+    <Compile Include="Source\HttpContext\Offline\OfflineHttpResponse.cs" />
+    <Compile Include="Source\HttpContext\Offline\OfflineHttpServerUtility.cs" />
+    <Compile Include="Source\HttpContext\Offline\OfflineHttpSessionState.cs" />
+    <Compile Include="Source\HttpContext\Online\OnlineHttpContext.cs" />
+    <Compile Include="Source\HttpContext\Online\OnlineHttpRequest.cs" />
+    <Compile Include="Source\HttpContext\Online\OnlineHttpResponse.cs" />
+    <Compile Include="Source\HttpContext\Online\OnlineHttpServerUtility.cs" />
+    <Compile Include="Source\HttpContext\Online\OnlineHttpSessionState.cs" />
+    <Compile Include="Source\HttpHandlers\AjaxPageHandler.cs" />
+    <Compile Include="Source\HttpHandlers\MVCHandler.cs" />
+    <Compile Include="Source\HttpHandlers\PageHandler.cs" />
+    <Compile Include="Source\HttpHandlers\MvcPageHandler.cs" />
+    <Compile Include="Source\HttpHandlers\ResourceHttpHandler.cs" />
+    <Compile Include="Source\HttpModules\HttpModule.cs" />
+    <Compile Include="Source\Controller\Controller.cs" />
+    <Compile Include="Source\Controller\ControllerAction.cs" />
+    <Compile Include="Source\Controller\ControllerClass.cs" />
+    <Compile Include="Source\Controller\PageController.cs" />
+    <Compile Include="Source\Utility\JavascriptMinifier.cs" />
+    <Compile Include="Source\Plugins\AjaxProviders\ExtJsAjaxProvider.cs" />
+    <Compile Include="Source\Plugins\AjaxProviders\JQueryAjaxProvider.cs" />
+    <Compile Include="Source\Plugins\DefaultControlIdGenerator.cs" />
+    <Compile Include="Source\Plugins\Interfaces\IAjaxProvider.cs" />
+    <Compile Include="Source\Plugins\Interfaces\IControlIdProvider.cs" />
+    <Compile Include="Source\Plugins\Interfaces\IObjectBinder.cs" />
+    <Compile Include="Source\Plugins\Interfaces\IPageLoggingProvider.cs" />
+    <Compile Include="Source\Plugins\Interfaces\ISessionLoggingProvider.cs" />
+    <Compile Include="Source\Plugins\Interfaces\ISessionSerializer.cs" />
+    <Compile Include="Source\Plugins\Interfaces\ITemplateResolver.cs" />
+    <Compile Include="Source\Plugins\Interfaces\ITranslationProvider.cs" />
+    <Compile Include="Source\Plugins\Interfaces\IVisitorProvider.cs" />
+    <Compile Include="Source\Plugins\MinimalSessionDataProvider.cs" />
+    <Compile Include="Source\Plugins\MinimalVisitorProvider.cs" />
+    <Compile Include="Source\Routing\Route.cs" />
+    <Compile Include="Source\Routing\RouteParameter.cs" />
+    <Compile Include="Source\Routing\Router.cs" />
+    <Compile Include="Source\Routing\RouteResult.cs" />
+    <Compile Include="Source\Routing\Validation\RouteValidationAction.cs" />
+    <Compile Include="Source\Routing\Validation\RouteValidationResult.cs" />
+    <Compile Include="Source\Routing\Validation\IRouteValidator.cs" />
+    <Compile Include="Source\Routing\Validation\RegexRouteValidator.cs" />
+    <Compile Include="Source\SessionManagement\SessionBase.cs" />
+    <Compile Include="Source\SessionManagement\SessionManager.cs" />
+    <Compile Include="Source\SessionManagement\SessionProperty.cs" />
+    <Compile Include="Source\UnitTesting\ContextCreatedEventArgs.cs" />
+    <Compile Include="Source\UnitTesting\OfflineWebSession.cs" />
+    <Compile Include="Source\Utility\ExceptionHelper.cs" />
+    <Compile Include="Source\Utility\PathHelper.cs" />
+    <Compile Include="Source\Utility\PropertyHelper.cs" />
+    <Compile Include="Source\Utility\ResourceHelper.cs" />
+    <Compile Include="Source\Utility\TranslationHelper.cs" />
+    <Compile Include="Source\Utility\Url.cs" />
+    <Compile Include="Source\Utility\UrlHelper.cs" />
+    <Compile Include="Source\Utility\UrlParameterCollection.cs" />
+    <Compile Include="Source\ViewEngine\ControlCollection.cs" />
+    <Compile Include="Source\ViewEngine\Table.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\ICompiledTemplate.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\ITemplateContext.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\ITemplateParser.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\IViewEngine.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\PathReplacer.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\Vici\ViciCompiledTemplate.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\Vici\ViciTemplateConfig.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\Vici\ViciTemplateParser.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\Vici\ViciTemplateTokenizer.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\Template.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\TemplateNotFoundException.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\TemplateParserContext.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\TemplateUtil.cs" />
+    <Compile Include="Source\ViewEngine\TemplateParser\Vici\ViciViewEngine.cs" />
+    <Compile Include="Source\ViewEngine\UrlHolder.cs" />
+    <Compile Include="Source\ViewEngine\View.cs" />
+    <Compile Include="Source\ViewEngine\ViewComponent.cs" />
+    <Compile Include="Source\ViewEngine\ViewDataContainer.cs" />
+    <Compile Include="Source\WebApp\Config\ViewEngineCollection.cs" />
+    <Compile Include="Source\WebApp\Config\WebAppConfig.cs" />
+    <Compile Include="Source\WebApp\WebAppContext.cs" />
+    <Compile Include="Source\WebApp\WebAppHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
