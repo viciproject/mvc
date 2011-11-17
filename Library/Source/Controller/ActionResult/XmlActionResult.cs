@@ -65,6 +65,8 @@ namespace Vici.Mvc
         public override void Execute(HttpContextBase httpContext)
         {
             httpContext.Response.ContentType = "text/xml";
+            httpContext.Response.ContentEncoding = Encoding.UTF8;
+            httpContext.Response.Charset = "utf-8";
 
             if (_xml != null)
             {
