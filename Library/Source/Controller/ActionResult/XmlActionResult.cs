@@ -26,6 +26,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -34,37 +35,58 @@ namespace Vici.Mvc
     public class XmlActionResult : ActionResult
     {
         private readonly string _xml;
+        private readonly string _contentType = "application/xml";
         private readonly XDocument _xDocument;
         private readonly XmlDocument _xmlDocument;
 
-        public XmlActionResult(string xml) : base(true)
+        public XmlActionResult(string xml, string contentType) : base(true)
         {
             if (xml == null)
                 throw new ArgumentNullException(xml);
 
+            if (contentType != null)
+                _contentType = contentType;
+
             _xml = xml;
         }
 
-        public XmlActionResult(XDocument xDocument) : base(true)
+        public XmlActionResult(string xml) : this(xml, null)
+        {
+        }
+
+        public XmlActionResult(XDocument xDocument, string contentType) : base(true)
         {
             if (xDocument == null)
                 throw new ArgumentNullException("xDocument");
 
+            if (contentType != null)
+                _contentType = contentType;
+
             _xDocument = xDocument;
         }
 
-        public XmlActionResult(XmlDocument xmlDocument)
-            : base(true)
+        public XmlActionResult(XDocument xDocument) : this(xDocument, null)
+        {
+        }
+
+        public XmlActionResult(XmlDocument xmlDocument, string contentType) : base(true)
         {
             if (xmlDocument == null)
                 throw new ArgumentNullException("xmlDocument");
 
+            if (contentType != null)
+                _contentType = contentType;
+
             _xmlDocument = xmlDocument;
+        }
+
+        public XmlActionResult(XmlDocument xmlDocument) : this(xmlDocument, null)
+        {
         }
 
         public override void Execute(HttpContextBase httpContext)
         {
-            httpContext.Response.ContentType = "text/xml";
+            httpContext.Response.ContentType = _contentType;
             httpContext.Response.ContentEncoding = Encoding.UTF8;
             httpContext.Response.Charset = "utf-8";
 
