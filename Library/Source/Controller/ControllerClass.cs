@@ -120,7 +120,7 @@ namespace Vici.Mvc
                         urlAttributes = (UrlAttribute[])methodInfo.GetCustomAttributes(typeof(UrlAttribute), false);
 
                         foreach (UrlAttribute urlAttr in urlAttributes)
-                            routes.Add(new Route(urlAttr.Path,_name,methodInfo.Name));
+                            routes.Add(new Route(urlAttr.Path,_classType,methodInfo.Name));
                     }
                 }
             }
