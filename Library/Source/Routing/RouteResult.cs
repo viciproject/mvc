@@ -33,22 +33,43 @@ namespace Vici.Mvc
 	{
 	    private RouteValidationResult _validationResult = RouteValidationResult.Success;
 		private string _controller;
+	    private Type _controllerType;
 		private string _action;
 		private readonly Dictionary<string, string> _parameters = new Dictionary<string, string>();
 
-		public RouteResult(string controller, string action, Dictionary<string,string> parameters)
-		{
-			Action = action;
-			Controller = controller;
+        private RouteResult(string action, Dictionary<string,string> parameters)
+        {
+            Action = action;
 
             if (parameters != null)
-			    foreach (KeyValuePair<string, string> param in parameters)
-				    _parameters[param.Key] = param.Value;
+                foreach (KeyValuePair<string, string> param in parameters)
+                    _parameters[param.Key] = param.Value;
+        }
+
+		public RouteResult(string controller, string action, Dictionary<string,string> parameters) : this(action, parameters)
+		{
+			Controller = controller;
 		}
+
+        public RouteResult(Type controllerType, string action, Dictionary<string, string> parameters) : this(action, parameters)
+        {
+            ControllerType = controllerType;
+        }
+
+	    public ControllerClass CreateControllerClass()
+	    {
+            if (_controllerType != null)
+                return WebAppConfig.GetControllerClass(_controllerType);
+
+            if (_controller != null)
+                return WebAppConfig.GetControllerClass(_controller);
+
+	        return null;
+	    }
 
 		public string Controller
 		{
-			get { return _controller; }
+            get { return _controller; }
 			set { _controller = value; }
 		}
 
@@ -67,6 +88,11 @@ namespace Vici.Mvc
 	    {
 	        get { return _validationResult; }
 	        set { _validationResult = value; }
+	    }
+
+	    public Type ControllerType
+	    {
+	        set { _controllerType = value; }
 	    }
 	}
 }

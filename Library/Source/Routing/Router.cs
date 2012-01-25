@@ -83,7 +83,23 @@ namespace Vici.Mvc
             IEnumerable<IRouteValidator> validators = from option in options where option is IRouteValidator select (IRouteValidator) option;
             IEnumerable<RouteParameter> parameters = from option in options where option is RouteParameter select (RouteParameter)option;
 
-            AddRoute(url,controller,action,validators,parameters);
+            AddRoute(new Route(url,controller,action,validators,parameters));
+        }
+
+        public void AddRoute(string url, Type controllerType, string action, params object[] options)
+        {
+            IEnumerable<IRouteValidator> validators = from option in options where option is IRouteValidator select (IRouteValidator)option;
+            IEnumerable<RouteParameter> parameters = from option in options where option is RouteParameter select (RouteParameter)option;
+
+            AddRoute(new Route(url, controllerType, action, validators, parameters));
+        }
+
+        public void AddRoute<T>(string url, string action, params object[] options) where T:Controller
+        {
+            IEnumerable<IRouteValidator> validators = from option in options where option is IRouteValidator select (IRouteValidator)option;
+            IEnumerable<RouteParameter> parameters = from option in options where option is RouteParameter select (RouteParameter)option;
+
+            AddRoute(new Route<T>(url, action, validators, parameters));
         }
 
         public void InsertRoute(string url, string controller, string action, params object[] options)
@@ -91,112 +107,38 @@ namespace Vici.Mvc
             IEnumerable<IRouteValidator> validators = from option in options where option is IRouteValidator select (IRouteValidator)option;
             IEnumerable<RouteParameter> parameters = from option in options where option is RouteParameter select (RouteParameter)option;
 
-            InsertRoute(url, controller, action, validators, parameters);
+            InsertRoute(new Route(url, controller, action, validators, parameters));
         }
 
-        public void AddRoute(string url, string controller, string action, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
-		{
-            AddRoute(new Route(url, controller, action, validators, routeParameters));
-		}
-
-        public void InsertRoute(string url, string controller, string action, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
-		{
-            InsertRoute(new Route(url, controller, action, validators, routeParameters));
-		}
-
-        public void AddRoute(string url, string controller, string action, params RouteParameter[] routeParameters)
+        public void InsertRoute(string url, Type controllerType, string action, params object[] options)
         {
-            AddRoute(new Route(url, controller, action, routeParameters));
+            IEnumerable<IRouteValidator> validators = from option in options where option is IRouteValidator select (IRouteValidator)option;
+            IEnumerable<RouteParameter> parameters = from option in options where option is RouteParameter select (RouteParameter)option;
+
+            InsertRoute(new Route(url, controllerType, action, validators, parameters));
         }
 
-        public void InsertRoute(string url, string controller, string action, params RouteParameter[] routeParameters)
+        public void InsertRoute<T>(string url, string action, params object[] options) where T:Controller
         {
-            InsertRoute(new Route(url, controller, action, routeParameters));
-        }
+            IEnumerable<IRouteValidator> validators = from option in options where option is IRouteValidator select (IRouteValidator)option;
+            IEnumerable<RouteParameter> parameters = from option in options where option is RouteParameter select (RouteParameter)option;
 
-        public void AddRoute(string url, string controller, string action, IEnumerable<RouteParameter> routeParameters)
-		{
-            AddRoute(new Route(url, controller, action, routeParameters));
-        }
-
-        public void InsertRoute(string url, string controller, string action, IEnumerable<RouteParameter> routeParameters)
-		{
-            InsertRoute(new Route(url, controller, action, routeParameters));
-        }
-
-        public void AddRoute(string url, string controller, string action, params IRouteValidator[] validators)
-        {
-            AddRoute(new Route(url, controller, action, validators));
-        }
-
-        public void InsertRoute(string url, string controller, string action, params IRouteValidator[] validators)
-        {
-            InsertRoute(new Route(url, controller, action, validators));
-        }
-
-        public void AddRoute(string url, string controller, string action, IEnumerable<IRouteValidator> validators)
-        {
-            AddRoute(new Route(url, controller, action, validators));
-        }
-
-        public void InsertRoute(string url, string controller, string action, IEnumerable<IRouteValidator> validators)
-        {
-            InsertRoute(new Route(url, controller, action, validators));
-        }
-
-        public void AddRoute(string url, string controller, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
-        {
-            AddRoute(new Route(url, controller, validators, routeParameters));
-        }
-
-        public void InsertRoute(string url, string controller, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
-        {
-            InsertRoute(new Route(url, controller, validators, routeParameters));
-        }
-
-        public void AddRoute(string url, string controller, params RouteParameter[] routeParameters)
-        {
-            AddRoute(new Route(url, controller, routeParameters));
-        }
-
-        public void InsertRoute(string url, string controller, params RouteParameter[] routeParameters)
-        {
-            InsertRoute(new Route(url, controller, routeParameters));
-        }
-
-        public void AddRoute(string url, string controller, IEnumerable<RouteParameter> routeParameters)
-        {
-            AddRoute(new Route(url, controller, routeParameters));
-        }
-
-        public void InsertRoute(string url, string controller, IEnumerable<RouteParameter> routeParameters)
-        {
-            InsertRoute(new Route(url, controller, routeParameters));
-        }
-
-        public void AddRoute(string url, string controller, params IRouteValidator[] validators)
-        {
-            AddRoute(new Route(url, controller, validators));
-        }
-
-        public void InsertRoute(string url, string controller, params IRouteValidator[] validators)
-        {
-            InsertRoute(new Route(url, controller, validators));
-        }
-
-        public void AddRoute(string url, string controller, IEnumerable<IRouteValidator> validators)
-        {
-            AddRoute(new Route(url, controller, validators));
-        }
-
-        public void InsertRoute(string url, string controller, IEnumerable<IRouteValidator> validators)
-        {
-            InsertRoute(new Route(url, controller, validators));
+            InsertRoute(new Route<T>(url, action, validators, parameters));
         }
 
         public void AddRoute(string url, string controller, string action) 
         {
             AddRoute(new Route(url, controller, action));
+        }
+
+        public void AddRoute(string url, Type controllerType, string action)
+        {
+            AddRoute(new Route(url, controllerType, action));
+        }
+
+        public void AddRoute<T>(string url, string action) where T:Controller
+        {
+            AddRoute(new Route<T>(url, action));
         }
 
         public void InsertRoute(string url, string controller, string action)
@@ -207,6 +149,16 @@ namespace Vici.Mvc
         public void AddRoute(string url, string controller) 
         {
             AddRoute(new Route(url, controller));
+        }
+
+        public void AddRoute(string url, Type typeController)
+        {
+            AddRoute(new Route(url, typeController));
+        }
+
+        public void AddRoute<T>(string url) where T : Controller
+        {
+            AddRoute(new Route<T>(url));
         }
 
 		internal RouteResult Resolve(string url)

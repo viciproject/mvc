@@ -30,10 +30,62 @@ using System.Text.RegularExpressions;
 
 namespace Vici.Mvc
 {
+    public class Route<T> : Route where T:Controller
+    {
+        public Route(string url) : base(url, typeof(T))
+        {
+        }
+
+        public Route(string url, string action) : base(url, typeof(T), action)
+        {
+        }
+
+        public Route(string url, string action, IEnumerable<IRouteValidator> validators) : base(url, typeof(T), action, validators)
+        {
+        }
+
+        public Route(string url, string action, params IRouteValidator[] validators) : base(url, typeof(T), action, validators)
+        {
+        }
+
+        public Route(string url, IEnumerable<IRouteValidator> validators) : base(url, typeof(T), validators)
+        {
+        }
+
+        public Route(string url, params IRouteValidator[] validators) : base(url, typeof(T), validators)
+        {
+        }
+
+        public Route(string url, IEnumerable<RouteParameter> routeParameters) : base(url, typeof(T), routeParameters)
+        {
+        }
+
+        public Route(string url, params RouteParameter[] routeParameters) : base(url, typeof(T), routeParameters)
+        {
+        }
+
+        public Route(string url, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters) : base(url, typeof(T), validators, routeParameters)
+        {
+        }
+
+        public Route(string url, string action, IEnumerable<RouteParameter> routeParameters) : base(url, typeof(T), action, routeParameters)
+        {
+        }
+
+        public Route(string url, string action, params RouteParameter[] routeParameters) : base(url, typeof(T), action, routeParameters)
+        {
+        }
+
+        public Route(string url, string action, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters) : base(url, typeof(T), action, validators, routeParameters)
+        {
+        }
+    }
+
 	public class Route
 	{
 		private string _url;
-		private string _controller;
+		private string _controllerName;
+	    private Type _controllerType;
 		private string _action = "Run";
 	    private Dictionary<string, string> _parameters;
 		private string[] _parameterNames;
@@ -41,95 +93,184 @@ namespace Vici.Mvc
 		private string[] _regexGroups;
 	    private List<IRouteValidator> _validators;
 
-		public Route(string url, string controller, string action, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
+		public Route(string url, string controllerName, string action, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
 		{
             Url = url;
-            Controller = controller;
+            ControllerName = controllerName;
             Action = action;
 		    Validators = validators;
 		    RouteParameters = routeParameters;
 		}
 
-        public Route(string url, string controller, string action, params RouteParameter[] routeParameters)
+        public Route(string url, Type controllerType, string action, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
+            Action = action;
+            Validators = validators;
+            RouteParameters = routeParameters;
+        }
+
+        public Route(string url, string controllerName, string action, params RouteParameter[] routeParameters)
+        {
+            Url = url;
+            ControllerName = controllerName;
             Action = action;
             RouteParameters = routeParameters;
         }
 
-        public Route(string url, string controller, string action, IEnumerable<RouteParameter> routeParameters)
+        public Route(string url, Type controllerType, string action, params RouteParameter[] routeParameters)
+        {
+            Url = url;
+            ControllerType = controllerType;
+            Action = action;
+            RouteParameters = routeParameters;
+        }
+
+        public Route(string url, string controllerName, string action, IEnumerable<RouteParameter> routeParameters)
 		{
             Url = url;
-            Controller = controller;
+            ControllerName = controllerName;
             Action = action;
             RouteParameters = routeParameters;
         }
 
-        public Route(string url, string controller, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
+        public Route(string url, Type controllerType, string action, IEnumerable<RouteParameter> routeParameters)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
+            Action = action;
+            RouteParameters = routeParameters;
+        }
+
+        public Route(string url, string controllerName, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
+        {
+            Url = url;
+            ControllerName = controllerName;
             Validators = validators;
             RouteParameters = routeParameters;
         }
 
-        public Route(string url, string controller, params RouteParameter[] routeParameters)
+        public Route(string url, Type controllerType, IEnumerable<IRouteValidator> validators, IEnumerable<RouteParameter> routeParameters)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
+            Validators = validators;
             RouteParameters = routeParameters;
         }
 
-        public Route(string url, string controller, IEnumerable<RouteParameter> routeParameters)
+        public Route(string url, string controllerName, params RouteParameter[] routeParameters)
         {
             Url = url;
-            Controller = controller;
+            ControllerName = controllerName;
             RouteParameters = routeParameters;
         }
 
-        public Route(string url, string controller, params IRouteValidator[] validators)
+        public Route(string url, Type controllerType, params RouteParameter[] routeParameters)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
+            RouteParameters = routeParameters;
+        }
+
+        public Route(string url, string controllerName, IEnumerable<RouteParameter> routeParameters)
+        {
+            Url = url;
+            ControllerName = controllerName;
+            RouteParameters = routeParameters;
+        }
+
+        public Route(string url, Type controllerType, IEnumerable<RouteParameter> routeParameters)
+        {
+            Url = url;
+            ControllerType = controllerType;
+            RouteParameters = routeParameters;
+        }
+
+        public Route(string url, string controllerName, params IRouteValidator[] validators)
+        {
+            Url = url;
+            ControllerName = controllerName;
             Validators = validators;
         }
 
-        public Route(string url, string controller, IEnumerable<IRouteValidator> validators)
+        public Route(string url, Type controllerType, params IRouteValidator[] validators)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
             Validators = validators;
         }
 
-        public Route(string url, string controller, string action, params IRouteValidator[] validators)
+        public Route(string url, string controllerName, IEnumerable<IRouteValidator> validators)
         {
             Url = url;
-            Controller = controller;
+            ControllerName = controllerName;
+            Validators = validators;
+        }
+
+        public Route(string url, Type controllerType, IEnumerable<IRouteValidator> validators)
+        {
+            Url = url;
+            ControllerType = controllerType;
+            Validators = validators;
+        }
+
+        public Route(string url, string controllerName, string action, params IRouteValidator[] validators)
+        {
+            Url = url;
+            ControllerName = controllerName;
             Action = action;
             Validators = validators;
         }
 
-        public Route(string url, string controller, string action, IEnumerable<IRouteValidator> validators)
+        public Route(string url, Type controllerType, string action, params IRouteValidator[] validators)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
             Action = action;
             Validators = validators;
         }
 
-
-        public Route(string url, string controller, string action) 
+        public Route(string url, string controllerName, string action, IEnumerable<IRouteValidator> validators)
         {
             Url = url;
-            Controller = controller;
+            ControllerName = controllerName;
+            Action = action;
+            Validators = validators;
+        }
+
+        public Route(string url, Type controllerType, string action, IEnumerable<IRouteValidator> validators)
+        {
+            Url = url;
+            ControllerType = controllerType;
+            Action = action;
+            Validators = validators;
+        }
+
+        public Route(string url, string controllerName, string action) 
+        {
+            Url = url;
+            ControllerName = controllerName;
             Action = action;
         }
 
-        public Route(string url, string controller) 
+        public Route(string url, Type controllerType, string action)
         {
             Url = url;
-            Controller = controller;
+            ControllerType = controllerType;
+            Action = action;
+        }
+
+        public Route(string url, string controllerName) 
+        {
+            Url = url;
+            ControllerName = controllerName;
+        }
+
+        public Route(string url, Type controllerType)
+        {
+            Url = url;
+            ControllerType = controllerType;
         }
 
 		public IEnumerable<IRouteValidator> Validators
@@ -154,8 +295,6 @@ namespace Vici.Mvc
 			    _url = _url.Replace("[", "\\[");
                 _url = _url.Replace("]", "\\]");
 
-               
-
 			    _url = Regex.Replace(
 			        _url, 
 			        @"{(?<name>[a-zA-Z0-9_]+)}",
@@ -177,10 +316,10 @@ namespace Vici.Mvc
 			}
 		}
 
-		public string Controller
+		public string ControllerName
 		{
-			get { return _controller; }
-			set { _controller = value; }
+			get { return _controllerName; }
+			set { _controllerName = value; }
 		}
 
 		public string Action
@@ -203,13 +342,24 @@ namespace Vici.Mvc
             }
 	    }
 
-		internal RouteResult Resolve(string url)
+	    public Type ControllerType
+	    {
+	        get { return _controllerType; }
+	        set { _controllerType = value; }
+	    }
+
+	    internal RouteResult Resolve(string url)
 		{
 			Match m = _regex.Match(url);
 
 			if (m.Success)
 			{
-				RouteResult result = new RouteResult(Controller, Action, _parameters);
+				RouteResult result;
+                
+                if (ControllerType != null)
+                    result = new RouteResult(ControllerType, Action, _parameters);
+                else
+                    result = new RouteResult(ControllerName, Action, _parameters);
 
 				foreach (string groupName in _regexGroups)
 				{
@@ -217,7 +367,7 @@ namespace Vici.Mvc
 					string searchString = "{" + groupName + "}";
 					bool found = false;
 
-                    if (result.Controller.Contains(searchString))
+                    if (result.Controller != null && result.Controller.Contains(searchString))
                     {
                         result.Controller = result.Controller.Replace(searchString, value);
                         found = true;

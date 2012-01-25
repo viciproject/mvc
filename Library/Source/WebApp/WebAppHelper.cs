@@ -224,7 +224,7 @@ namespace Vici.Mvc
             if (routeResult == null)
                 return null;
 
-            ControllerClass controllerClass = WebAppConfig.GetControllerClass(routeResult.Controller);
+            ControllerClass controllerClass = routeResult.CreateControllerClass();
 
             if (controllerClass != null)
             {
