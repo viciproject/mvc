@@ -36,6 +36,11 @@ namespace Vici.Mvc.Test.OfflineBrowserTests
             _browser.PageGet("/fr/index");
 
             Assert.AreEqual("fr", WebAppContext.Session.LanguageCode);
+
+            _browser.PageGet("/nl/index/test");
+
+            Assert.AreEqual("nl", WebAppContext.Session.LanguageCode);
+
         }
 
 

@@ -27,6 +27,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Vici.Core;
 
 namespace Vici.Mvc
 {
@@ -49,6 +50,12 @@ namespace Vici.Mvc
 
             string url = SessionBase.Request.AppRelativeCurrentExecutionFilePath.Substring(2);
 
+            int idx1 = url.IndexOf('/');
+
+            if (idx1 == 2)
+                return url.Left(2);
+
+            /*
             int idx1 = url.LastIndexOf('/');
 			
             if (idx1 > 0)
@@ -60,7 +67,8 @@ namespace Vici.Mvc
                 else
                     return url.Substring(0,idx1);
             }
-
+            */
+             
             return "";
         }
 

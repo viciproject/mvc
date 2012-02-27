@@ -78,10 +78,6 @@ namespace Vici.Mvc
         private static readonly object _initLock = new object();
         private static bool _initialized;
 
-//        static WebAppConfig()
-//        {
-//        }
-
         private class ObjectBinder : IStringConverter
         {
             private static readonly List<IObjectBinder> _customObjectBinders = new List<IObjectBinder>();
@@ -141,7 +137,7 @@ namespace Vici.Mvc
                             break;
                         case "promesh.defaultlanguage":
                         case "mvc.defaultlanguage":
-                            DefaultLanguage = configValue.ToUpper();
+                            DefaultLanguage = configValue;
                             break;
                         case "promesh.applicationclass":
                         case "mvc.applicationclass":
@@ -272,7 +268,7 @@ namespace Vici.Mvc
         public static string DefaultLanguage
         {
             get { return _defaultLanguage; }
-            set { _defaultLanguage = value; }
+            set { _defaultLanguage = value.ToLower(); }
         }
 
         public static bool UseLanguagePath
