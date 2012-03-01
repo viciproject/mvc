@@ -44,7 +44,7 @@ namespace Vici.Mvc
             _permanent = permanent;
         }
 
-        public override void Execute(HttpContextBase httpContext)
+        protected internal override void Execute(HttpContextBase httpContext)
         {
             if (_permanent)
             {

@@ -84,7 +84,7 @@ namespace Vici.Mvc
         {
         }
 
-        public override void Execute(HttpContextBase httpContext)
+        protected internal override void Execute(HttpContextBase httpContext)
         {
             httpContext.Response.ContentType = _contentType;
             httpContext.Response.ContentEncoding = Encoding.UTF8;

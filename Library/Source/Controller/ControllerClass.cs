@@ -26,6 +26,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -119,8 +120,7 @@ namespace Vici.Mvc
 
                         urlAttributes = (UrlAttribute[])methodInfo.GetCustomAttributes(typeof(UrlAttribute), false);
 
-                        foreach (UrlAttribute urlAttr in urlAttributes)
-                            routes.Add(new Route(urlAttr.Path,_classType,methodInfo.Name));
+                        routes.AddRange(from urlAttr in urlAttributes select new Route(urlAttr.Path, _classType, methodInfo.Name));
                     }
                 }
             }

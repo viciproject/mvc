@@ -65,7 +65,7 @@ namespace Vici.Mvc
             FileData = fileData;
         }
 
-        public override void Execute(HttpContextBase httpContext)
+        protected internal override void Execute(HttpContextBase httpContext)
         {
             httpContext.Response.ContentType = ContentType;
 

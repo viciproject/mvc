@@ -39,10 +39,10 @@ namespace Vici.Mvc
             Final = final;
         }
 
-        public abstract void Execute(HttpContextBase httpContext);
+        protected internal abstract void Execute(HttpContextBase httpContext);
 
-        public virtual string LayoutName { get { return null; }}
-        public virtual string ViewName { get { return null; } }
+//        public virtual string LayoutName { get { return null; }}
+//        public virtual string ViewName { get { return null; } }
 
         public bool Final { get; private set; }
     }

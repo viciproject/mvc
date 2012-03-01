@@ -47,7 +47,7 @@ namespace Vici.Mvc
             _dateFormat = dateFormat;
         }
 
-        public override void Execute(HttpContextBase httpContext)
+        protected internal override void Execute(HttpContextBase httpContext)
         {
             httpContext.Response.ContentType = "application/json";
 

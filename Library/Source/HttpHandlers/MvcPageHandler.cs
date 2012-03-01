@@ -89,12 +89,14 @@ namespace Vici.Mvc
 
                     if (WebAppConfig.LoggingProvider != null)
                     {
+                        View view = (actionResult is RenderViewActionResult) ? ((RenderViewActionResult)actionResult).View : null;
+
                         WebAppConfig.LoggingProvider.LogPage(WebAppContext.Session.SessionID,
                                                              baseUrl,
                                                              GetQueryString(),
                                                              WebAppContext.Session.LanguageCode,
-                                                             actionResult != null ? actionResult.LayoutName : null,
-                                                             actionResult != null ? actionResult.ViewName : null,
+                                                             view != null ? view.LayoutName : null,
+                                                             view != null ? view.ViewName : null,
                                                              (int) stopWatchRun.ElapsedMilliseconds,
                                                              (int) stopWatchRender.ElapsedMilliseconds,
                                                              (int) stopWatchTotal.ElapsedMilliseconds);

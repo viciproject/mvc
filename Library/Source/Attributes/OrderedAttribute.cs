@@ -30,13 +30,7 @@ namespace Vici.Mvc
 {
     public abstract class OrderedAttribute : Attribute
     {
-        private int _order;
-
-        public int Order
-        {
-            get { return _order; }
-            set { _order = value; }
-        }
+        public int Order { get; set; }
 
         internal static void Sort(OrderedAttribute[] attributes)
         {

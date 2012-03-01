@@ -45,7 +45,7 @@ namespace Vici.Mvc
             _statusMessage = statusMessage;
         }
 
-        public override void Execute(HttpContextBase httpContext)
+        protected internal override void Execute(HttpContextBase httpContext)
         {
             httpContext.Response.StatusCode = _statusCode;
 

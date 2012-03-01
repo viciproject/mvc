@@ -34,18 +34,21 @@ namespace Vici.Mvc
     {
         private readonly string _expression;
 
-        private class ValidationContext : CSharpContext
+        private class ValidationContext : ParserContext
         {
-            public ValidationContext(object currentValue, Dictionary<string, object> validationContext)
+            public ValidationContext(object currentValue, Dictionary<string, object> validationContext) : base(ParserContextBehavior.Easy)
             {
-                foreach (KeyValuePair<string, object> pair in validationContext)
-                {
-                    Set(pair.Key, pair.Value, pair.Value == null ? typeof(object) : pair.Value.GetType());
-                }
+                foreach (var pair in validationContext)
+                    Set(pair.Key, pair.Value);
 
-                Set("this", currentValue, currentValue == null ? typeof(object) : currentValue.GetType());
+                Set("this", currentValue);
 
                 AddType("DateTime", typeof(DateTime));
+            }
+
+            public void Set(string name, object value)
+            {
+                Set(name, value, value == null ? typeof(object) : value.GetType());
             }
         }
 

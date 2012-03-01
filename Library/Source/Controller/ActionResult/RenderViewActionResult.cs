@@ -42,10 +42,7 @@ namespace Vici.Mvc
 //            View = new View();
 //        }
 //
-        public override string LayoutName { get { return View.LayoutName; } }
-        public override string ViewName { get { return View.ViewName; } }
-
-        public override void Execute(HttpContextBase httpContext)
+        protected internal override void Execute(HttpContextBase httpContext)
         {
             try
             {
