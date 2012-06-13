@@ -44,6 +44,7 @@ namespace Vici.Mvc
             s = AddClassAttribute(s, className, clasError);
             s = AddEnabledAttribute(s);
             s = AddOnChangeAttribute(s);
+            s = AddTabIndexAttribute(s);
 
             if (MaxLength != Int32.MaxValue)
                 s += " maxlength=\"" + MaxLength + "\"";

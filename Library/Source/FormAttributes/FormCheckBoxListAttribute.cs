@@ -61,8 +61,9 @@ namespace Vici.Mvc
             else
                 checkBoxListControl.Values.Clear();
 
-            foreach (object valueObject in (IEnumerable) value)
-                checkBoxListControl.Values.Add(valueObject);
+            if (value != null)
+                foreach (object valueObject in (IEnumerable) value)
+                    checkBoxListControl.Values.Add(valueObject);
         }
 
         protected internal override Control CreateControl(string name)

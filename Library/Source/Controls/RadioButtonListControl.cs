@@ -76,6 +76,8 @@ namespace Vici.Mvc
         private string _keyMember;
         private string _valueMember;
 
+        private bool _useLineBreaks;
+
         private string _valueFormatString;
 
         private readonly List<Item> _items = new List<Item>();
@@ -124,6 +126,12 @@ namespace Vici.Mvc
                 _valueMember = value;
                 _isBound = false;
             }
+        }
+
+        public bool UseLineBreaks
+        {
+            get { return _useLineBreaks; }
+            set { _useLineBreaks = value; }
         }
 
         public string ValueFormatString
@@ -183,15 +191,16 @@ namespace Vici.Mvc
             string formatString = _valueFormatString ?? "{1}";
 
             // Append the elements of the list
-            for (int i = 0; i < Items.Count; i++)
+            foreach (Item t in Items)
             {
-                bool isCurrent = Equals(Value, Items[i].Key);
+                bool isCurrent = Equals(Value, t.Key);
 
-                string value = view.ParseTranslations(String.Format(formatString, Items[i].Key, Items[i].Value));
+                string value = view.ParseTranslations(String.Format(formatString, t.Key, t.Value));
 
                 output.Append("<input type=\"radio\" " + AddOnChangeAttribute("") + " " +
-                              AddClassAttribute("", className, classNameError) + " " + AddNameAttribute("") + " value='" +
-                              Items[i].Key + "'" + (isCurrent ? " checked" : "") + ">" + HttpUtility.HtmlEncode(value) + "\r\n");
+                              AddClassAttribute("", className, classNameError) + " " + AddNameAttribute("") + " value=\"" +
+                              HttpUtility.HtmlEncode(t.Key.ToString()) + "\"" + (isCurrent ? " checked" : "") + ">" + HttpUtility.HtmlEncode(value) + 
+                              (_useLineBreaks ? "<br />" : "") + "\r\n");
             }
 
             return output.ToString();

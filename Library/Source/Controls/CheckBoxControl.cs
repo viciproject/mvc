@@ -26,6 +26,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace Vici.Mvc
 {
@@ -45,13 +46,14 @@ namespace Vici.Mvc
             string s = "<input type=\"checkbox\"";
 
             if (!string.IsNullOrEmpty(Value))
-                s += " value=\"" + Value + "\"";
+                s += " value=\"" + HttpUtility.HtmlEncode(Value) + "\"";
 
             s = AddIdAttribute(s);
             s = AddNameAttribute(s);
             s = AddClassAttribute(s, className, classNameError);
             s = AddEnabledAttribute(s);
             s = AddOnChangeAttribute(s);
+            s = AddTabIndexAttribute(s);
 
             if (!string.IsNullOrEmpty(OnClick))
                 s += " onclick=\"" + OnClick + "\"";

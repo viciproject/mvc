@@ -271,10 +271,11 @@ namespace Vici.Mvc
                 s = AddNameAttribute(s);
                 s = AddEnabledAttribute(s);
                 s = AddOnChangeAttribute(s);
+                s = AddTabIndexAttribute(s);
 
                 string value = view.ParseTranslations(Items[i].Value.ToString());
 
-                s += " type='checkbox' value='" + Items[i].Key + "'" + (isChecked  ? " checked='checked'" : "") + " />" + HttpUtility.HtmlEncode(value);
+                s += " type='checkbox' value='" + HttpUtility.HtmlEncode(Items[i].Key.ToString()) + "'" + (isChecked  ? " checked='checked'" : "") + " />" + HttpUtility.HtmlEncode(value);
 
                 if (Style == CheckBoxListStyle.Div)
                     s += "</div>";

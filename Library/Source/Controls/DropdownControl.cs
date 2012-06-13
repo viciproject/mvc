@@ -256,6 +256,7 @@ namespace Vici.Mvc
             s = AddClassAttribute(s, className , classNameError);
             s = AddEnabledAttribute(s);
             s = AddOnChangeAttribute(s);
+            s = AddTabIndexAttribute(s);
 
             s += ">\r\n";
 
@@ -267,7 +268,7 @@ namespace Vici.Mvc
 
                 string value = view.ParseTranslations(String.Format(formatString, Items[i].Key, Items[i].Value));
 
-                s += "<option value='" + Items[i].Key + "'" + (isCurrent ? " selected='selected'" : "") + ">" + HttpUtility.HtmlEncode(value) + "</option>\r\n";
+                s += "<option value='" + HttpUtility.HtmlEncode(Items[i].Key.ToString()) + "'" + (isCurrent ? " selected='selected'" : "") + ">" + HttpUtility.HtmlEncode(value) + "</option>\r\n";
             }
 
             s += "</select>";

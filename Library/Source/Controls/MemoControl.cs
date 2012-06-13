@@ -67,6 +67,7 @@ namespace Vici.Mvc
             s = AddEnabledAttribute(s);
             s = AddOnChangeAttribute(s);
             s = AddReadOnlyAttribute(s);
+            s = AddTabIndexAttribute(s);
 
             s += " rows=\"" + Height + "\"";
             s += " cols=\"" + Width + "\"";

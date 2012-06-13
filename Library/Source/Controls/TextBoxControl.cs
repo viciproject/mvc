@@ -39,6 +39,7 @@ namespace Vici.Mvc
         private string _onKeyDown;
         private string _onKeyUp;
         private bool _readOnly;
+        private string _placeholder;
 
         public TextBoxControl(string name) : base(name)
         {
@@ -92,6 +93,12 @@ namespace Vici.Mvc
             set { _readOnly = value; }
         }
 
+        public string Placeholder
+        {
+            get { return _placeholder; }
+            set { _placeholder = value; }
+        }
+
         protected override string GenerateHtml(View view, string className, string clasError)
         {
             string s = "<input type=\"text\" value=\"" + HttpUtility.HtmlEncode(_value) + "\"";
@@ -102,6 +109,7 @@ namespace Vici.Mvc
             s = AddEnabledAttribute(s);
             s = AddOnChangeAttribute(s);
             s = AddReadOnlyAttribute(s);
+            s = AddTabIndexAttribute(s);
 
             if (Size != 0)
                 s += " size=\"" + Size + "\"";
@@ -120,6 +128,9 @@ namespace Vici.Mvc
 
             if (!string.IsNullOrEmpty(OnKeyPress))
                 s += " onkeypress=\"" + OnKeyPress + "\"";
+
+            if (!string.IsNullOrEmpty(Placeholder))
+                s += " placeholder=\"" + HttpUtility.HtmlEncode(Placeholder) + "\"";
 
             return s + "/>";
         }

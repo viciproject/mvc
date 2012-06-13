@@ -36,6 +36,7 @@ namespace Vici.Mvc
 	    public bool AutoPost;
 	    public string OnChange;
 	    public string ValidationErrorMsg;
+	    public short TabIndex;
 
 		protected internal Type FieldType;
 		internal object FormData;
@@ -53,6 +54,7 @@ namespace Vici.Mvc
             control.Id = Id;
             control.AutoPost = AutoPost;
             control.OnChange = OnChange;
+            control.TabIndex = TabIndex;
 
             return control;
         }
