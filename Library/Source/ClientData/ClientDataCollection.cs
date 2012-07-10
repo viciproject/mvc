@@ -43,12 +43,9 @@ namespace Vici.Mvc
 
         private NameValueCollection Data
         {
-            get
+            get 
             {
-                if (_post)
-                    return WebAppContext.Request.Form;
-                else
-                    return WebAppContext.QueryParameters;
+                return _post ? WebAppContext.Request.Form : WebAppContext.QueryParameters;
             }
         }
 

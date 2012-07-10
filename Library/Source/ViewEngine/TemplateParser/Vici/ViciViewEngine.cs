@@ -28,15 +28,12 @@ namespace Vici.Mvc
 {
     public class ViciViewEngine : IViewEngine
     {
-        private ITemplateParser _parser = new ViciTemplateParser();
-
-        public ITemplateParser Parser
+        public ViciViewEngine()
         {
-            get
-            {
-                return _parser;
-            }
+            Parser = new ViciTemplateParser();
         }
+
+        public ITemplateParser Parser { get; private set; }
 
         public bool CanParse(string fileName)
         {

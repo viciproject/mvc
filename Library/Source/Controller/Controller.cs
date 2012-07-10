@@ -82,11 +82,6 @@ namespace Vici.Mvc
             get { return _view.ViewData; }
         }
 
-//        public ControlCollection Controls
-//        {
-//            get { return _view.Controls; }
-//        }
-
         internal void Initialize(ControllerClass controllerClass, TemplateParserContext parserContext) // parse context used for view components
         {
             _controllerClass = controllerClass;
@@ -119,7 +114,7 @@ namespace Vici.Mvc
 
         public bool IsPost(string buttonName)
         {
-            return IsPost() && (!string.IsNullOrEmpty(WebAppContext.FormData[buttonName]));
+            return IsPost() && (!string.IsNullOrEmpty(FormData[buttonName]));
         }
 
         private void MapClientData(TemplateParserContext context)

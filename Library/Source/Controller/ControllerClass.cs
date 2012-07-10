@@ -48,8 +48,6 @@ namespace Vici.Mvc
 
         internal ControllerClass(Type classType)
         {
-            List<Route> routes = new List<Route>();
-
             _classType = classType;
             _name = classType.Name;
 
@@ -71,10 +69,7 @@ namespace Vici.Mvc
 
             UrlAttribute[] urlAttributes = (UrlAttribute[])classType.GetCustomAttributes(typeof(UrlAttribute), false);
 
-            foreach (UrlAttribute urlAttribute in urlAttributes)
-            {
-                routes.Add(new Route(urlAttribute.Path, _name, urlAttribute.Action));
-            }
+            List<Route> routes = urlAttributes.Select(attribute => new Route(attribute.Path, _name, attribute.Action)).ToList();
 
             while (currentClassType != typeof(Controller) && currentClassType != null)
             {

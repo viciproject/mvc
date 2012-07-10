@@ -53,10 +53,10 @@ namespace Vici.Mvc
 
                     object returnValue = controllerClass.Run(controller, controllerAction.ActionMethod, null);
 
-                    if (returnValue is ActionResult)
-                    {
-                        ActionResult actionResult = (ActionResult) returnValue;
+                    var actionResult = returnValue as ActionResult;
 
+                    if (actionResult != null)
+                    {
                         if (actionResult.Final)
                             controller.SkipTearDown = true;
 
@@ -87,10 +87,10 @@ namespace Vici.Mvc
                 {
                     controllerClass.SetupController(component, context);
 
-                    object returnValue = controllerClass.Run(component, "Run", context);
+                    string returnValue = controllerClass.Run(component, "Run", context) as string;
 
-                    if (returnValue is string)
-                        return (string) returnValue;
+                    if (returnValue != null)
+                        return returnValue;
 
                     return TemplateUtil.ExtractBody(component.View.Render());
                 }
@@ -141,7 +141,8 @@ namespace Vici.Mvc
         {
             if (attribute.UseGet && WebAppContext.Parameters.Has(attribute.Name))
                 return WebAppContext.Parameters.Get(attribute.Name,type);
-            else if (attribute.UsePost && WebAppContext.FormData.Has(attribute.Name))
+            
+            if (attribute.UsePost && WebAppContext.FormData.Has(attribute.Name))
                 return WebAppContext.FormData.Get(attribute.Name,type);
 
             return null;
@@ -181,7 +182,7 @@ namespace Vici.Mvc
                 if (context != null && context.Get(parameter.Name, out value, out type))
                     parameterValues[i++] = value.Convert(parameter.ParameterType);
                 else
-                    parameterValues[i++] = GetClientValue(mapAttribute, parameter.ParameterType); //TODO: add IObjectBinder support for complex objects
+                    parameterValues[i++] = GetClientValue(mapAttribute, parameter.ParameterType);
             }
 
             return parameterValues;
@@ -189,8 +190,10 @@ namespace Vici.Mvc
 
         internal static string RunAjaxMethod(MethodInfo ajaxMethod, object obj, bool useXml)
         {
-            WebAppContext.AjaxContext = new AjaxContext();
-            WebAppContext.AjaxContext.ViewName = WebAppContext.FormData["_VIEWNAME_"];
+            WebAppContext.AjaxContext = new AjaxContext
+                                            {
+                                                ViewName = WebAppContext.FormData["_VIEWNAME_"]
+                                            };
 
             try
             {

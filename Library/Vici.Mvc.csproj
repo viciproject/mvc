@@ -163,7 +163,6 @@
     <Compile Include="Source\HttpContext\Online\OnlineHttpServerUtility.cs" />
     <Compile Include="Source\HttpContext\Online\OnlineHttpSessionState.cs" />
     <Compile Include="Source\HttpHandlers\AjaxPageHandler.cs" />
-    <Compile Include="Source\HttpHandlers\MVCHandler.cs" />
     <Compile Include="Source\HttpHandlers\PageHandler.cs" />
     <Compile Include="Source\HttpHandlers\MvcPageHandler.cs" />
     <Compile Include="Source\HttpHandlers\ResourceHttpHandler.cs" />
