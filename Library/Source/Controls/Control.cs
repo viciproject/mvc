@@ -41,6 +41,7 @@ namespace Vici.Mvc
         private string _cssClassError;
         private bool _autoPost;
         private string _onChange;
+        private short _tabIndex = -1;
         private bool _enabled = true;
 
         private static readonly Dictionary<Type, string> _defaultCssClasses = new Dictionary<Type, string>();
@@ -157,6 +158,12 @@ namespace Vici.Mvc
             set { _onChange = value; }
         }
 
+        public short TabIndex
+        {
+            get { return _tabIndex; }
+            set { _tabIndex = value; }
+        }
+
         public bool Enabled
         {
             get { return _enabled; }
@@ -269,6 +276,14 @@ namespace Vici.Mvc
         {
             if (!Enabled)
                 html += " disabled=\"disabled\"";
+
+            return html;
+        }
+
+        protected string AddTabIndexAttribute(string html)
+        {
+            if (TabIndex >= 0)
+                html += " tabindex=\""+ TabIndex + "\"";
 
             return html;
         }

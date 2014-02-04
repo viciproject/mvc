@@ -73,6 +73,7 @@ namespace Vici.Mvc
 
             s = AddClassAttribute(s, className, classNameError);
             s = AddEnabledAttribute(s);
+            s = AddTabIndexAttribute(s);
 
             if (!string.IsNullOrEmpty(_onClick))
                 s += " onclick=\"" + _onClick + "\"";

@@ -43,6 +43,7 @@ namespace Vici.Mvc
         public string OnKeyUp;
         public string OnKeyPress;
 	    public bool ReadOnly;
+	    public string Placeholder;
 
 	    protected internal override bool IsRightType()
 		{
@@ -87,6 +88,7 @@ namespace Vici.Mvc
             control.OnKeyUp = OnKeyUp;
             control.OnKeyPress = OnKeyPress;
 	        control.ReadOnly = ReadOnly;
+	        control.Placeholder = Placeholder;
 
             return control;
 	    }

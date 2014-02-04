@@ -33,6 +33,7 @@ namespace Vici.Mvc
         public string KeyMember { get; set; }
         public string ValueMember { get; set; }
         public object DataSource { get; set; }
+        public bool UseLineBreaks { get; set; }
         public string ValueFormatString { get; set; }
 
         public FormRadioButtonListAttribute()
@@ -61,6 +62,7 @@ namespace Vici.Mvc
                                                      DataSource = DataSource,
                                                      KeyMember = KeyMember,
                                                      ValueMember = ValueMember,
+                                                     UseLineBreaks =  UseLineBreaks,
                                                      ValueFormatString = ValueFormatString
                                                  };
 
